@@ -204,7 +204,7 @@ function initCharts() {
         }
       }
     });
-    
+    input 
     // Render Custom Legend for Traffic
     renderCustomLegend('trafficLegend', trafficLabels, trafficData, trafficBgColors);
   }
