@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CreatorPulse Analytics</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Layout Wrapper -->
+    <div class="app-layout">
+      <!-- Sidebar Drawer Overlay (Mobile) -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="wordmark">
+            <i data-lucide="pulse" class="brand-icon"></i>
+            <span class="brand-text">CreatorPulse</span>
+          </div>
+          <button class="mobile-close-btn" id="closeSidebar">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="index.html" class="nav-item active">
+            <i data-lucide="layout-dashboard"></i>
+            <span class="nav-label">Overview</span>
+          </a>
+          <a href="revenue.html" class="nav-item">
+            <i data-lucide="line-chart"></i>
+            <span class="nav-label">Revenue</span>
+          </a>
+          <a href="audience.html" class="nav-item">
+            <i data-lucide="users"></i>
+            <span class="nav-label">Audience</span>
+          </a>
+          <a href="content.html" class="nav-item">
+            <i data-lucide="play-square"></i>
+            <span class="nav-label">Content</span>
+          </a>
+          <a href="reports.html" class="nav-item">
+            <i data-lucide="file-bar-chart"></i>
+            <span class="nav-label">Reports</span>
+          </a>
+
+          <div class="nav-divider"></div>
+
+          <a href="settings.html" class="nav-item">
+            <i data-lucide="settings"></i>
+            <span class="nav-label">Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button class="collapse-btn" id="collapseBtn">
+            <i data-lucide="panel-left-close" id="collapseIcon"></i>
+            <span class="nav-label collapse-label">Collapse</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+          <div class="top-nav-left">
+            <button class="mobile-menu-btn" id="openSidebar">
+              <i data-lucide="menu"></i>
+            </button>
+          </div>
+
+          <div class="global-search">
+            <i data-lucide="search" class="search-icon"></i>
+            <input
+              type="text"
+              placeholder="Search creators, content, or reports..."
+              class="search-input"
+            />
+            <span class="search-shortcut">⌘K</span>
+          </div>
+
+          <div class="top-nav-right">
+            <button class="icon-btn notification-btn">
+              <i data-lucide="bell"></i>
+              <span class="notification-dot"></span>
+            </button>
+
+            <div class="user-avatar-container">
+              <img
+                src="https://ui-avatars.com/api/?name=Alex+Carter&background=1E293B&color=F8FAFC"
+                alt="User Avatar"
+                class="user-avatar"
+              />
+            </div>
+          </div>
+        </header>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-scrollable">
+          <div class="dashboard-container">
+            <!-- KPI Summary Row -->
+            <section class="kpi-row">
+              <div class="kpi-card skeleton-box loading">
+                <div class="kpi-header">
+                  <span class="kpi-label">TOTAL REVENUE</span>
+                  <i data-lucide="dollar-sign" class="kpi-icon"></i>
+                </div>
+                <div class="kpi-value">$124,592.00</div>
+                <div class="kpi-meta">
+                  <div class="kpi-trend positive">
+                    <i data-lucide="arrow-up-right"></i>
+                    <span>14.2%</span>
+                  </div>
+                  <span class="kpi-comparison">vs last month</span>
+                </div>
+              </div>
+
+              <div class="kpi-card skeleton-box loading">
+                <div class="kpi-header">
+                  <span class="kpi-label">ACTIVE SUBSCRIBERS</span>
+                  <i data-lucide="users" class="kpi-icon"></i>
+                </div>
+                <div class="kpi-value">8,409</div>
+                <div class="kpi-meta">
+                  <div class="kpi-trend positive">
+                    <i data-lucide="arrow-up-right"></i>
+                    <span>5.1%</span>
+                  </div>
+                  <span class="kpi-comparison">vs last month</span>
+                </div>
+              </div>
+
+              <div class="kpi-card skeleton-box loading">
+                <div class="kpi-header">
+                  <span class="kpi-label">MONTHLY GROWTH</span>
+                  <i data-lucide="trending-up" class="kpi-icon"></i>
+                </div>
+                <div class="kpi-value">+$4,290.50</div>
+                <div class="kpi-meta">
+                  <div class="kpi-trend negative">
+                    <i data-lucide="arrow-down-right"></i>
+                    <span>1.2%</span>
+                  </div>
+                  <span class="kpi-comparison">vs last month</span>
+                </div>
+              </div>
+
+              <div class="kpi-card skeleton-box loading">
+                <div class="kpi-header">
+                  <span class="kpi-label">CONVERSION RATE</span>
+                  <i data-lucide="activity" class="kpi-icon"></i>
+                </div>
+                <div class="kpi-value">4.82%</div>
+                <div class="kpi-meta">
+                  <div class="kpi-trend positive">
+                    <i data-lucide="arrow-up-right"></i>
+                    <span>0.4%</span>
+                  </div>
+                  <span class="kpi-comparison">vs last month</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Main Layout Grid -->
+            <div class="content-grid">
+              <!-- Hero Chart -->
+              <section
+                class="panel hero-chart-panel span-8 skeleton-box loading"
+              >
+                <div class="panel-header">
+                  <h2 class="panel-title">Revenue Trend</h2>
+                  <div class="segmented-control">
+                    <button class="segment">7d</button>
+                    <button class="segment active">30d</button>
+                    <button class="segment">90d</button>
+                    <button class="segment">12m</button>
+                  </div>
+                </div>
+                <div class="chart-container hero-chart-container">
+                  <canvas id="revenueChart"></canvas>
+                </div>
+              </section>
+
+              <!-- Audience Growth -->
+              <section class="panel audience-panel span-4 skeleton-box loading">
+                <div class="panel-header">
+                  <h2 class="panel-title">Audience Growth</h2>
+                  <button class="icon-btn small">
+                    <i data-lucide="more-horizontal"></i>
+                  </button>
+                </div>
+                <div class="audience-stats">
+                  <div class="stat-block">
+                    <span class="stat-label">New</span>
+                    <span class="stat-value positive">+1,204</span>
+                  </div>
+                  <div class="stat-block">
+                    <span class="stat-label">Churn</span>
+                    <span class="stat-value negative">-342</span>
+                  </div>
+                </div>
+                <div class="chart-container small-chart-container">
+                  <canvas id="audienceChart"></canvas>
+                </div>
+              </section>
+
+              <!-- Traffic Sources -->
+              <section class="panel traffic-panel span-6 skeleton-box loading">
+                <div class="panel-header">
+                  <h2 class="panel-title">Traffic Sources</h2>
+                </div>
+                <div class="donut-chart-layout">
+                  <div class="chart-container donut-container">
+                    <canvas id="trafficChart"></canvas>
+                  </div>
+                  <!-- Custom Legend injected via JS -->
+                  <div id="trafficLegend" class="custom-legend"></div>
+                </div>
+              </section>
+
+              <!-- Device Breakdown -->
+              <section class="panel devices-panel span-6 skeleton-box loading">
+                <div class="panel-header">
+                  <h2 class="panel-title">Device Breakdown</h2>
+                </div>
+                <div class="donut-chart-layout">
+                  <div class="chart-container donut-container">
+                    <canvas id="deviceChart"></canvas>
+                  </div>
+                  <div id="deviceLegend" class="custom-legend"></div>
+                </div>
+              </section>
+
+              <!-- Content Performance Table -->
+              <section class="panel table-panel span-12 skeleton-box loading">
+                <div class="panel-header table-header">
+                  <h2 class="panel-title">Content Performance</h2>
+                  <div class="table-actions">
+                    <div class="table-search">
+                      <i data-lucide="search"></i>
+                      <input type="text" placeholder="Search content..." />
+                    </div>
+                    <button class="btn btn-secondary">
+                      <i data-lucide="filter"></i> Filter
+                    </button>
+                  </div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th class="sortable">
+                          Content Title <i data-lucide="chevron-down"></i>
+                        </th>
+                        <th class="align-right sortable">
+                          Views <i data-lucide="chevron-down"></i>
+                        </th>
+                        <th class="align-right sortable">
+                          Revenue <i data-lucide="chevron-down"></i>
+                        </th>
+                        <th class="align-right">Engagement</th>
+                        <th>Publish Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                      <!-- Populated via JS -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="table-pagination">
+                  <span class="page-info">Showing 1 to 5 of 24 results</span>
+                  <div class="pagination-controls">
+                    <button class="btn-icon" disabled>
+                      <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="ellipsis">...</span>
+                    <button class="page-btn">5</button>
+                    <button class="btn-icon">
+                      <i data-lucide="chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <!-- /content-grid -->
+
+            <footer class="dashboard-footer">
+              <span class="text-low">CreatorPulse Analytics © 2026</span>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
